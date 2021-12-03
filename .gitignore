@@ -1,5 +1,3 @@
 node_modules
-package-lock.
-src/assets
-src/components
+package-lock.json
 src/pages
