@@ -8,7 +8,7 @@ import DashboardOverview from "./dashboard/DashboardOverview";
 import Transactions from "./Transactions";
 import Settings from "./Settings";
 import BootstrapTables from "./tables/BootstrapTables";
-import Signin from "./examples/Signin";
+import Signin from "./Signin";
 import Signup from "./examples/Signup";
 import ForgotPassword from "./examples/ForgotPassword";
 import ResetPassword from "./examples/ResetPassword";

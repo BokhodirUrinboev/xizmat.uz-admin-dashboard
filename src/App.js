@@ -1,7 +1,7 @@
 import React from "react";
 import useToken from './hooks/useToken';
 import HomePage from "./pages/HomePage";
-import Signin from "./pages/examples/Signin";
+import Signin from "./pages/Signin";
 
 function App() {
 

@@ -1,20 +1,60 @@
 
-import React from "react";
+import React, { useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft, faEnvelope, faUnlockAlt } from "@fortawesome/free-solid-svg-icons";
 import { faFacebookF, faGithub, faTwitter } from "@fortawesome/free-brands-svg-icons";
 import { Col, Row, Form, Card, Button, FormCheck, Container, InputGroup } from '@themesberg/react-bootstrap';
 import { Link } from 'react-router-dom';
+import useToken from "../hooks/useToken";
+import { client } from "../utils/api-client";
+import { Alert } from "@themesberg/react-bootstrap"
 
-import { Routes } from "../../routes";
-import BgImage from "../../assets/img/illustrations/signin.svg";
+import { Routes } from "../routes";
+import BgImage from "../assets/img/illustrations/signin.svg";
 
 
 export default () => {
+
+  const authURL = process.env.REACT_APP_AUTH_URL
+  const [setToken] = useToken(true);
+  const email = useRef();
+  const pass = useRef();
+  const [isAlert, setIsAlert] = useState(false);
+  const [error, setError] = useState(null)
+
+  const login = (evt) => {
+
+    evt.preventDefault();
+
+    console.log(email, pass)
+
+    client(authURL, {
+      data: {
+        email: email.current.value,
+        password: pass.current.value
+      },
+      method: "POST"
+    }).then((data) => {
+      console.log('token data', data)
+      setToken(data.jwt_token)
+    }).catch((err) => {
+      setIsAlert(true);
+      setError(err);
+    })
+  }
+
   return (
     <main>
+
+
       <section className="d-flex align-items-center my-5 mt-lg-6 mb-lg-5">
         <Container>
+          {
+            isAlert && <Alert variant="danger" onClose={() => setIsAlert(false)} dismissible>
+              <Alert.Heading>{error?.error}</Alert.Heading>
+              <p>{error?.message}</p>
+            </Alert>
+          }
           <p className="text-center">
             <Card.Link as={Link} to={Routes.DashboardOverview.path} className="text-gray-700">
               <FontAwesomeIcon icon={faAngleLeft} className="me-2" /> Back to homepage
@@ -26,14 +66,14 @@ export default () => {
                 <div className="text-center text-md-center mb-4 mt-md-0">
                   <h3 className="mb-0">Sign in to our platform</h3>
                 </div>
-                <Form className="mt-4">
+                <Form className="mt-4" type="submit" onSubmit={login}>
                   <Form.Group id="email" className="mb-4">
                     <Form.Label>Your Email</Form.Label>
                     <InputGroup>
                       <InputGroup.Text>
                         <FontAwesomeIcon icon={faEnvelope} />
                       </InputGroup.Text>
-                      <Form.Control autoFocus required type="email" placeholder="example@company.com" />
+                      <Form.Control autoFocus required type="email" placeholder="example@company.com" ref={email} />
                     </InputGroup>
                   </Form.Group>
                   <Form.Group>
@@ -43,7 +83,7 @@ export default () => {
                         <InputGroup.Text>
                           <FontAwesomeIcon icon={faUnlockAlt} />
                         </InputGroup.Text>
-                        <Form.Control required type="password" placeholder="Password" />
+                        <Form.Control required type="password" placeholder="Password" ref={pass} />
                       </InputGroup>
                     </Form.Group>
                     <div className="d-flex justify-content-between align-items-center mb-4">

@@ -1,5 +1,4 @@
 import * as auth from './auth-provider'
-const apiURL = process.env.REACT_APP_API_URL
 
 function client(
     endpoint,
@@ -16,7 +15,7 @@ function client(
     }
 
     return window
-        .fetch(`${apiURL}/${endpoint}`, config)
+        .fetch(endpoint, config)
         .then(async (response) => {
                 if (response.status === 401) {
                     await auth.logout()
