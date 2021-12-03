@@ -5,13 +5,11 @@ import Signin from "./pages/examples/Signin";
 
 function App() {
 
-  const [token] = useToken()
+  const [token] = useToken();
 
   return (
     <>
-      {token ? (
-        <HomePage />
-      ) : <Signin />}
+      {token ? <HomePage /> : <Signin />}
     </>
   )
 }
