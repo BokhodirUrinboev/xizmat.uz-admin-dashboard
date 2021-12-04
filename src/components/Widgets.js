@@ -304,9 +304,7 @@ export const RankingWidget = () => {
 };
 
 export const SalesValueWidget = (props) => {
-  const { title, value, percentage } = props;
-  const percentageIcon = percentage < 0 ? faAngleDown : faAngleUp;
-  const percentageColor = percentage < 0 ? "text-danger" : "text-success";
+  const { title, value, data } = props;
 
   return (
     <Card className="bg-secondary-alt shadow-sm">
@@ -315,55 +313,11 @@ export const SalesValueWidget = (props) => {
           <h5 className="fw-normal mb-2">
             {title}
           </h5>
-          <h3>${value}</h3>
-          <small className="fw-bold mt-2">
-            <span className="me-2">Yesterday</span>
-            <FontAwesomeIcon icon={percentageIcon} className={`${percentageColor} me-1`} />
-            <span className={percentageColor}>
-              {percentage}%
-            </span>
-          </small>
-        </div>
-        <div className="d-flex ms-auto">
-          <Button variant="secondary" size="sm" className="me-2">Month</Button>
-          <Button variant="primary" size="sm" className="me-3">Week</Button>
+          <h3>{value}</h3>
         </div>
       </Card.Header>
       <Card.Body className="p-2">
-        <SalesValueChart />
-      </Card.Body>
-    </Card>
-  );
-};
-
-export const SalesValueWidgetPhone = (props) => {
-  const { title, value, percentage } = props;
-  const percentageIcon = percentage < 0 ? faAngleDown : faAngleUp;
-  const percentageColor = percentage < 0 ? "text-danger" : "text-success";
-
-  return (
-    <Card className="bg-secondary-alt shadow-sm">
-      <Card.Header className="d-md-flex flex-row align-items-center flex-0">
-        <div className="d-block mb-3 mb-md-0">
-          <h5 className="fw-normal mb-2">
-            {title}
-          </h5>
-          <h3>${value}</h3>
-          <small className="fw-bold mt-2">
-            <span className="me-2">Yesterday</span>
-            <FontAwesomeIcon icon={percentageIcon} className={`${percentageColor} me-1`} />
-            <span className={percentageColor}>
-              {percentage}%
-            </span>
-          </small>
-        </div>
-        <div className="d-flex ms-auto">
-          <Button variant="secondary" size="sm" className="me-2">Month</Button>
-          <Button variant="primary" size="sm" className="me-3">Week</Button>
-        </div>
-      </Card.Header>
-      <Card.Body className="p-2">
-        <SalesValueChartphone />
+        <SalesValueChart data={data} />
       </Card.Body>
     </Card>
   );

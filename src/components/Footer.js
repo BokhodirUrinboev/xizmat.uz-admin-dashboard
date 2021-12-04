@@ -11,9 +11,9 @@ export default () => {
       <Row>
         <Col xs={12} lg={6} className="mb-4 mb-lg-0">
           <p className="mb-0 text-center text-xl-left">
-            Copyright © 2019-{`${currentYear} `}
-            <Card.Link href="https://themesberg.com" target="_blank" className="text-blue text-decoration-none fw-normal">
-              Themesberg
+            Copyright © {`${currentYear} `}
+            <Card.Link href="/" target="_blank" className="text-blue text-decoration-none fw-normal">
+              Xizmat.uz
             </Card.Link>
           </p>
         </Col>

@@ -3,25 +3,30 @@ import React from "react";
 import Chartist from "react-chartist";
 import ChartistTooltip from 'chartist-plugin-tooltips-updated';
 
-export const SalesValueChart = () => {
+export const SalesValueChart = ({data: seriesData}) => {
   const data = {
-    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-    series: [[1, 2, 2, 3, 3, 4, 3]]
+    labels: ['2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021'],
+    series: [seriesData]
   };
 
   const options = {
     low: 0,
     showArea: true,
     fullWidth: true,
+    chartPadding: {
+      right: 40,
+      left: 40
+    },
     axisX: {
       position: 'end',
-      showGrid: true
+      showGrid: true,
+      showLabel: true
     },
     axisY: {
       // On the y-axis start means left and end means right
-      showGrid: false,
-      showLabel: false,
-      labelInterpolationFnc: value => `$${value / 1}k`
+      showGrid: true,
+      showLabel: true,
+      labelInterpolationFnc: value => `${value / 1000000 >= 1 ? `${value / 1000000}mln` : `${value / 1000}k`}`
     }
   };
 
@@ -30,38 +35,7 @@ export const SalesValueChart = () => {
   ]
 
   return (
-    <Chartist data={data} options={{...options, plugins}} type="Line" className="ct-series-g ct-double-octave" />
-  );
-};
-
-export const SalesValueChartphone = () => {
-  const data = {
-    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-    series: [[1, 2, 2, 3, 3, 4, 3]]
-  };
-
-  const options = {
-    low: 0,
-    showArea: true,
-    fullWidth: false,
-    axisX: {
-      position: 'end',
-      showGrid: true
-    },
-    axisY: {
-      // On the y-axis start means left and end means right
-      showGrid: false,
-      showLabel: false,
-      labelInterpolationFnc: value => `$${value / 1}k`
-    }
-  };
-
-  const plugins = [
-    ChartistTooltip()
-  ]
-
-  return (
-    <Chartist data={data} options={{...options, plugins}} type="Line" className="ct-series-g ct-major-tenth" />
+    <Chartist data={data} options={{...options, plugins}} type="Line" className=" ct-double-octave" />
   );
 };
 
