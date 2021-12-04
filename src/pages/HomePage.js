@@ -6,6 +6,9 @@ import { Routes } from "../routes";
 import Upgrade from "./Upgrade";
 import DashboardOverview from "./dashboard/DashboardOverview";
 import Users from "../pages/Users";
+// Services CRUD
+import Services from './Services/Services';
+
 import Transactions from "./Transactions";
 import Settings from "./Settings";
 import BootstrapTables from "./tables/BootstrapTables";
@@ -101,6 +104,9 @@ export default () => (
     {/* pages */}
     <RouteWithSidebar exact path={Routes.DashboardOverview.path} component={DashboardOverview} />
     <RouteWithSidebar exact path={Routes.Users.path} component={Users} />
+    {/* Services CRUD  */}
+    <RouteWithSidebar exact path={Routes.Services.path} component={Services} />
+
     <RouteWithSidebar exact path={Routes.Upgrade.path} component={Upgrade} />
     <RouteWithSidebar exact path={Routes.Transactions.path} component={Transactions} />
     <RouteWithSidebar exact path={Routes.Settings.path} component={Settings} />

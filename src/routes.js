@@ -3,6 +3,12 @@ export const Routes = {
     // pages
     DashboardOverview: { path: "/" },
     Users: {path: "/users"},
+    // Services CRUD
+    Services: {path: "/services"},
+    AddService: {path: "/services/add"},
+    EditService: {path: "/services/edit/:serviceId"},
+    DeleteService: {path: "/services/delete/:serviceId"},
+
     Transactions: { path: "/transactions" },
     Settings: { path: "/settings" },
     Upgrade: { path: "/upgrade" },

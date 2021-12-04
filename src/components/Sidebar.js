@@ -11,6 +11,7 @@ import { Link } from 'react-router-dom';
 import { Routes } from "../routes";
 import ReactHero from "../assets/img/technologies/react-hero-logo.svg";
 import ProfilePicture from "../assets/img/team/profile-picture-3.jpg";
+import { faServicestack } from "@fortawesome/free-brands-svg-icons";
 
 export default (props = {}) => {
   const location = useLocation();
@@ -100,7 +101,10 @@ export default (props = {}) => {
               <NavItem title="Overview" link={Routes.DashboardOverview.path} icon={faChartPie} />
               <NavItem title="Users" link={Routes.Users.path} icon={faUsers} />
 
-
+              <CollapsableNavItem eventKey="services/" title="Services" icon={faBook}>
+                <NavItem title="Services List" link={Routes.Services.path} />
+                <NavItem title="Add Service" link={Routes.AddService.path} />
+              </CollapsableNavItem>
 
               {/* <NavItem external title="Messages" link="https://demo.themesberg.com/volt-pro-react/#/messages" target="_blank" badgeText="Pro" icon={faInbox} />
               <NavItem title="Transactions" icon={faHandHoldingUsd} link={Routes.Transactions.path} />

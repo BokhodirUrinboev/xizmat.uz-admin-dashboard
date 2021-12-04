@@ -23,3 +23,16 @@ query {
   }
 }
 `;
+
+queries.GET_SERVICES = gql`
+  query {
+  services {
+    id
+    name
+    created_at
+    price
+    service_form
+    updated_at
+  }
+}
+`;
