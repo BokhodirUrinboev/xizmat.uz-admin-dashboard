@@ -3,6 +3,7 @@ export const Routes = {
     // pages
     DashboardOverview: { path: "/" },
     Users: {path: "/users"},
+    UserServices: {path: "/users/:accountId"},
     // Services CRUD
     Services: {path: "/services"},
     AddService: {path: "/services/add"},

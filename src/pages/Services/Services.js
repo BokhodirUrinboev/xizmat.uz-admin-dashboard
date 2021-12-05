@@ -1,4 +1,4 @@
-import { Card, Badge } from "@themesberg/react-bootstrap";
+import { Card } from "@themesberg/react-bootstrap";
 import React from "react";
 import Table from "../../components/Table"
 import { formatDate } from "../../utils/dateUtils"
@@ -36,14 +36,14 @@ function Services() {
                                 {
                                   row?.service_form[key][innerKey].input_type === "option" ? (
                                     <>
-                                    {innerKey}:
-                                    <ul>
-                                      {
-                                        row?.service_form[key][innerKey]?.option_values.map((optVal) => (
-                                          <li>{optVal}</li>
-                                        ))
-                                      }
-                                    </ul>
+                                      {innerKey}:
+                                      <ul>
+                                        {
+                                          row?.service_form[key][innerKey]?.option_values.map((optVal) => (
+                                            <li>{optVal}</li>
+                                          ))
+                                        }
+                                      </ul>
                                     </>
                                   ) : (innerKey)
                                 }

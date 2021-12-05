@@ -1,9 +1,10 @@
-import { Card, Badge } from "@themesberg/react-bootstrap";
+import { Badge } from "@themesberg/react-bootstrap";
 import React from "react";
+import { Link } from "react-router-dom"
 import Table from "../components/Table"
-import {formatDate} from "../utils/dateUtils"
+import { formatDate } from "../utils/dateUtils"
 
-function Users () {
+function Users() {
   return (
     <>
       <Table
@@ -15,13 +16,9 @@ function Users () {
             headerProps: ["Id", "Email", "Account Number", "Balance", "Role", "Active", 'Created At', 'Updated At'],
             dataProps: [
               (row) => (
-                <Card.Link
-                className="text-primary fw-bold"
-                  href={`mailto:${row?.display_name}`}
-                  target="_blank"
-                >
-                  {row?.display_name}
-                </Card.Link>
+                row?.accounts[0]?.id ?
+                <Link className="text-primary fw-bold" to={`/users/${row?.accounts[0]?.id}`}>{row?.display_name}</Link>
+                : <span>{row?.display_name}</span>
               ),
               (row) => <span>{row?.accounts[0]?.account_number ? row?.accounts[0]?.account_number : '-'}</span>,
               (row) => <span>{row?.accounts[0]?.balance?.amount ? row?.accounts[0]?.balance?.amount : '-'}</span>,

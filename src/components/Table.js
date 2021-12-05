@@ -6,10 +6,13 @@ import { Alert } from "@themesberg/react-bootstrap"
 const Table = ({
   queryName,
   dataName,
-  tableOptions
+  tableOptions,
+  queryVariables = {}
 }) => {
 
-  const { loading, data, error } = useQuery(queries[queryName])
+  const { loading, data, error } = useQuery(queries[queryName], {
+    variables: queryVariables
+  })
 
   const [tableData, setTableData] = useState(data ? data[dataName] : []);
   const [isAlert, setIsAlert] = useState(false)

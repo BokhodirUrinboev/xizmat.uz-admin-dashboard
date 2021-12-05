@@ -11,6 +11,7 @@ query {
     id
     updated_at
     accounts {
+      id
       account_number
       balance {
         amount
@@ -32,6 +33,28 @@ queries.GET_SERVICES = gql`
     created_at
     price
     service_form
+    updated_at
+  }
+}
+`;
+
+queries.GET_ACCOUNT_SERVICES = gql`
+query GetAccountServices($account_id: bigint!) {
+  service_accounts (where: {account_id: {_eq: $account_id}}) {
+    id
+    form_data
+    payment_status
+		status
+   	service {
+      name
+      price
+    }
+    account {
+      balance {
+        amount
+      }
+    }
+    created_at
     updated_at
   }
 }
